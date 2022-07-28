@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.RentLoGo.management.model.ManagerCarMapper">
+   
+   	<resultMap id="carResult" type="carDTO">
+		<result property="carModel" column="car_model" />
+		<result property="carSize" column="car_size" />
+		<result property="carType" column="car_type" />
+		<result property="carMade" column="car_made" />
+		<result property="carPrice" column="car_price" />
+	</resultMap>
+	
+	<resultMap id="rentCarResult" type="rentCarDTO">
+		<result property="carNumber" column="car_number" />
+		<result property="carModel" column="car_model" />
+		<result property="carColor" column="car_color" />
+		<result property="carDistance" column="car_distance" />
+	</resultMap>
+	
+	<resultMap id="allCarResult" type="allCarDTO">
+		<collection property="carDTO" resultMap="carResult" />
+		<collection property="rentCarDTO" resultMap="rentCarResult" />
+	</resultMap>
+   
+	<!-- 차량번호로 렌터카삭제-->
+	<delete id="dropCar" parameterType="String">
+      <![CDATA[
+		DELETE 
+  			FROM (SELECT *
+          			FROM "rent_car" r, "car" c
+         			WHERE r."car_model" = c."car_model")
+ 		WHERE "car_number" = #{carNumber}
+      ]]>
+	</delete>
+	
+	<!-- 렌터카 검색 -->
+	<select id="searchCarNumberModel" parameterType="java.util.Map" resultMap="allCarResult">
+		<![CDATA[
+			select * from "rent_car" r, "car" c
+		]]>
+		<where>
+			r."car_model" = c."car_model"
+			<if test="carNumber != '' and carNumber != null">
+				and r."car_number" like '%'||#{carNumber}||'%'
+			</if>
+			<if test="carModel != '' and carModel != null">
+				and r."car_model" like '%'||#{carModel}||'%'
+			</if>
+		</where>
+		<![CDATA[
+			order by r."car_number"    			
+		]]>
+	</select>
+	
+	<!-- 렌터카 검색 -->
+		<update id="modifyCar" parameterType="java.util.Map">
+		<![CDATA[
+			update "rent_car" r, "car" c
+			set r."car_number" = #{carNumber}, r."car_model" = #{carModel}, 
+				r."car_color" = #{carColor}, r."car_distance" = #{carDistance}, 
+				c."car_model" = #{carModel}, c."car_size" = #{carSize},
+				c."car_type" = #{carType}, c."car_made" = #{carMade},
+				c."car_price" = #{carPrice}
+			where r."car_model" = c."car_model"
+		]]>
+	</update>
+</mapper>
+   

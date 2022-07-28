@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.RentLoGo.rentCar.model.CarMapper">
+
+	<resultMap id="carResult" type="carDTO">
+		<result property="carModel" column="car_model" />
+		<result property="carSize" column="car_size" />
+		<result property="carType" column="car_type" />
+		<result property="carMade" column="car_made" />
+		<result property="carPrice" column="car_price" />
+	</resultMap>
+	
+	<resultMap id="rentCarResult" type="rentCarDTO">
+		<result property="carNumber" column="car_number" />
+		<result property="carModel" column="car_model" />
+		<result property="carColor" column="car_color" />
+		<result property="carDistance" column="car_distance" />
+	</resultMap>
+	
+	<resultMap id="allCarResult" type="allCarDTO">
+		<collection property="carDTO" resultMap="carResult" />
+		<collection property="rentCarDTO" resultMap="rentCarResult" />
+	</resultMap>
+	
+	
+	<select id="selectAllrentCar" resultMap="carResult">
+<!-- 	<select id="selectAllrentCar" resultType="com.RentLoGo.rentCar.model.CarDTO"> -->
+      <![CDATA[
+         select * from "car"
+      ]]>
+	</select>
+	
+<!-- 상품 리스트 조회 -->
+   	<select id="selectCarList" parameterType="java.util.Map" resultMap="allCarResult">
+      <![CDATA[
+ 		select *
+			from (
+			    select row_number() over(order by to_number(r."car_number")) as row_num, r."car_number", c."car_model", c."car_price", c."car_size"
+			    from "car" c, "rent_car" r
+			    where c."car_model" = r."car_model"
+			    order by to_number(r."car_number")
+			)
+		where row_num >= #{startIndex} and row_num < #{endIndex}
+      ]]>
+   </select>
+	
+<!-- RentCarDTO & CarDTO 조회 manage -->		
+	<select id="selectManageRentCar" resultMap="allCarResult">
+      <![CDATA[
+         select * from "rent_car", "car" 
+         where "rent_car"."car_model" = "car"."car_model"
+         order by "rent_car"."car_number"
+      ]]>
+	</select>
+
+
+</mapper>

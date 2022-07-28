@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.RentLoGo.board.model.BoardMapper">
+
+   <resultMap id="boardResult" type="boardDTO">
+		<result property="boardNum" column="board_num" />
+		<result property="memberId" column="member_id" />
+		<result property="boardOrigin" column="board_origin" />
+		<result property="boardTitle" column="board_title" />
+		<result property="boardContent" column="board_content" />
+		<result property="boardTime" column="board_time" />
+		<result property="boardModify" column="board_modify" />
+	</resultMap>
+	
+<!-- 	<insert id="enroll" parameterType="boardDTO">
+      <![CDATA[
+			insert into "board" ("board_num", "member_id", "board_origin", "board_title", "board_content", "board_time", "board_modify")
+							values(#{boardNum}, #{memberId}, #{boardOrigin}, #{boardTitle}, #{boardContent}, #{boardTime}, #{boardModify})
+							
+	      ]]>
+	</insert> -->
+	
+	<select id="getList" resultMap="boardResult">
+      <![CDATA[
+		select * from "board"
+      ]]>
+	</select>	
+	
+</mapper>

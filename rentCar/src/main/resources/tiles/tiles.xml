@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+<tiles-definitions>
+   <definition name="baseLayout"  template="/WEB-INF/views/tiles/base.jsp">
+      <put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
+   </definition>
+
+   <definition name="indexForm" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+   </definition>
+
+   <definition name="memberForm" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/member.jsp" />
+   </definition>
+   
+   <definition name="login" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/login.jsp" />
+   </definition>
+   
+   <definition name="memberModifyForm" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/modify.jsp" />
+   </definition>
+   
+   <definition name="memberDeleteForm" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/delete.jsp" />
+   </definition>
+   
+   <definition name="manage" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/management/member_manage.jsp" />
+   </definition>
+   
+   <definition name="manageCar" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/management/car_manage.jsp" />
+   </definition>
+   
+   <definition name="agree" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/member/clause_agree.jsp" />
+   </definition>
+   
+   <definition name="listCars" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/service/car_list.jsp" />
+   </definition>
+   
+   <definition name="carDetail" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/service/car_detail.jsp" />
+   </definition>
+   
+   <definition name="managerForm" extends="baseLayout">
+      <put-attribute name="body" value="/WEB-INF/views/management/manager_menu.jsp" />
+   </definition>
+   
+</tiles-definitions>

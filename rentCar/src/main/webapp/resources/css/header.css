@@ -1,0 +1,186 @@
+ * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        a {
+        	color: black;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: black;
+        }
+        li {
+            list-style: none;
+        }
+        .headerIcons {
+            font-size: 25px;
+            display: block !important;
+            margin-bottom: 10px;
+        }
+        header {
+            background-color: rgb(217, 217, 217);
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            height: 100px;
+        }
+        header > div {
+            min-width: 200px;
+            height: 100px;
+        }
+        header > div li {
+        	z-index: 2;
+        }
+        header div > a {
+            display: block;
+            font-size: 32px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        header div:nth-child(2):hover li {
+            display: block;
+        }
+
+        header div:nth-child(2) li a {
+            line-height: 30px;
+            position: relative;
+        }
+
+        header div:nth-child(2) li {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        header div:nth-child(2) li:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        header div:not(.list):hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .logo a{
+            background-image: url(/rentCar/resources/images/logo.png);
+            background-size: 200px;
+            background-position: center center;
+            width: 200px;
+            height: 100px;
+            display: block;
+            background-repeat: no-repeat;
+            text-indent: -9999em;
+        }
+        .list {
+            width: 400px;
+            height: 100px;
+        }
+        .list ul {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100px;
+        }
+
+        .list li {
+            text-align: center;
+        }
+
+        .list li a {
+            display: block;
+            width: 70px;
+        }
+        .member_menu, .burger {
+            display: none;
+        }
+        
+        .hide {
+			display: none;
+		}
+
+        @media(max-width: 960px) {
+
+            header > div:not(.logo, .list) {
+            min-width: 150px;
+            }
+
+            header div > a {
+                font-size: 24px;
+            }
+
+            .list ul{
+                flex-direction: column;
+                position: absolute;
+                top: 8%;
+                right: 3%;
+                visibility: hidden;
+                transition: 0.15s;
+            }
+            
+            .list {
+            	width: 0;
+            	min-width: 0;
+            }
+
+            .burger {
+                display: block;
+                position: absolute;
+                top: 3%;
+                right: 6%;
+            }
+
+            .member_menu:checked + .burger {
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                background-color: rgb(92, 92, 92);
+            }
+
+            .member_menu:checked ~ ul {
+                visibility: visible;
+                top: 15%;
+                right: 3%;
+	        }
+
+
+        @media(max-width: 480px) {
+            .logo {
+                display: none;
+            }
+
+            header div > a {
+                font-size: 16px;
+            }
+        }
+        
+/* 로그인 성공 영역 */
+.login_success_area{
+    height: 62%;
+    width: 80%;
+    border: 2px solid #7474ad;
+    border-radius: 15px;
+    margin: 5% auto;
+    padding-top: 5%;
+}
+.login_success_area>span{
+    display : block;
+    text-align: left;
+    margin-left: 10%;
+}
+
+
+/* 로그아웃 */
+.login_success_area>a{
+    font-size: 15px;
+    font-weight: 900;
+    display: inline-block;
+    margin-top: 5px;
+    background: #e1e5e8;
+    width: 82px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 25px;
+    color: #606267;    
+}

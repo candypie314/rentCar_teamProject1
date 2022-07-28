@@ -1,0 +1,30 @@
+  footer {
+            background-color: rgb(217, 217, 217);
+            height: 150px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 24px;
+            white-space: nowrap;
+        }
+
+        footer > div:nth-child(1) {
+            font-size: 32px;
+            text-align: center;
+            line-height: 150px;
+            flex: 1;
+        }
+        footer > div:nth-child(2) {
+            text-align: center;
+            line-height: 150px;
+            flex: 1;
+        }
+        footer > div:nth-child(3) {
+            flex: 2;
+        }
+        footer > div:nth-child(4) {
+            flex: 1;
+        }
+        footer > div:nth-child(4) div {
+            position: relative;
+            top: 20%;
+        }
